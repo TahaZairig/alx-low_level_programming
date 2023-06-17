@@ -11,8 +11,14 @@ int main(void)
 	int j;
 
 	for (i = 0; i < 10; i++)
+	{
 		for (j = 0; j < 10; j++)
-			putchar(i, j);
+		{
+			putchar('0' + j);
+			putchar('0' + i);
+			putchar(', ');
+		}
+	}
 	putchar('\n');
 	return (0);
 }
