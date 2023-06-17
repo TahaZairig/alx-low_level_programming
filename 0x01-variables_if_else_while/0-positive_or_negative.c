@@ -3,9 +3,9 @@
 #include <stdio.h>
 
 /**
- *main - The main determines if n positive or negative or zero
+ * main - The main determines if n positive or negative or zero
  *
- *Return: Always 0
+ * Return: Always 0
  */
 int main(void)
 {
