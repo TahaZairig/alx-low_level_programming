@@ -16,12 +16,12 @@ int main(void)
 		{
 			if (i < i2)
 			{
-				putchar('0' + i / 10);
-				putchar('0' + i % 10);
+				putchar('0' + (i / 10));
+				putchar('0' + (i % 10));
 				putchar(' ');
-				putchar('0' + i2 / 10);
-				putchar('0' + i2 % 10);
-				if (i < 98 || i2 < 99)
+				putchar('0' + (i2 / 10));
+				putchar('0' + (i2 % 10));
+				if (i < 98 || (i2 < 99))
 				{
 					putchar(',');
 					putchar(' ');
