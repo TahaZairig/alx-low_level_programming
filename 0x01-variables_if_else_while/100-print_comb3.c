@@ -16,8 +16,11 @@ int main(void)
 		{
 			putchar('0' + i);
 			putchar('0' + j);
-			putchar(',');
-			putchar(' ');
+			if (i + j < 89)
+			{
+				putchar(',');
+				putchar(' ');
+			}
 		}
 	}
 	putchar('\n');
