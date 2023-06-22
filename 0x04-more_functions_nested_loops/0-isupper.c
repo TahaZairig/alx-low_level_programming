@@ -15,3 +15,4 @@ int _isupper(int i)
 	{
 		return (0);
 	}
+}
