@@ -3,7 +3,8 @@
 /**
  * get_endianness - to check if a machine is little endian
  * or big endian
- * Return: 0 for little and 1 for little
+ * Return: 1 for little endian 
+ * and 0 for big endian
  */
 
 int get_endianness(void)
