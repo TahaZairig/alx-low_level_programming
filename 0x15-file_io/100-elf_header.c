@@ -18,17 +18,13 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident);
 void close_elf(int elf);
 
 /**
- * verify_elf - To verify whether a given file corresponds to an ELF file format.
- * @magic_numbers: A pointer to an array holding the magic numbers associated
- * with ELF files.
- *
- * Note: Exits code 98 if the provided file dos not conform to the ELF 
- * file format.
- */
+ * verify_elf - Verifies whether a given file conforms to the ELF file format.
+ * @magic_array: A pointer to an array holding the magic numbers associated with ELF files.
+ * Note: Exits with code 98 if the provided file does not meet the ELF file criteria.
+*/
 
 void check_elf(unsigned char *e_ident)
 {
-
 	int index;
 
 	for (index = 0; index < 4; index++)
@@ -42,20 +38,16 @@ void check_elf(unsigned char *e_ident)
 			exit(98);
 		}
 	}
-
 }
 
 /**
- * display_magic - To display the magic numbers present in an ELF header.
- * @magic_array: A pointer to an array holding the magic numbers associated 
- * with ELF files.
- *
- * Note: The magic numbers are shown with space as separators.
- */
+ * display_magic - Displays the magic numbers present in an ELF header.
+ * @magic_array: A pointer to an array holding the magic numbers associated with ELF files.
+ * Note: The magic numbers are shown with space separation.
+*/
 
 void print_magic(unsigned char *e_ident)
 {
-
 	int index;
 
 	printf(" Magic: ");
@@ -69,17 +61,15 @@ void print_magic(unsigned char *e_ident)
 		else
 			printf(" ");
 	}
-
 }
 
 /**
- * display_class - To display the calss information from an LF header.
- * @class_info: A pointer to an array holding the ELF class data.
- */
+ * display_class - Displays the class information from an ELF header.
+ * @class_info: A pointer to an array containing the ELF class data.
+*/
 
 void print_class(unsigned char *e_ident)
 {
-
 	printf(" Class: ");
 
 	switch (e_ident[EI_CLASS])
@@ -96,17 +86,15 @@ void print_class(unsigned char *e_ident)
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
-
 }
 
 /**
- * display_data - To display the data details from an ELF header.
- * @data_info: A pointer to an array containing th ELF data information.
- */
+ * display_data - Displays the data details from an ELF header.
+ * @data_info: A pointer to an array containing the ELF data information.
+*/
 
 void print_data(unsigned char *e_ident)
 {
-
 	printf(" Data: ");
 
 	switch (e_ident[EI_DATA])
@@ -123,18 +111,17 @@ void print_data(unsigned char *e_ident)
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_CLASS]);
 	}
-
 }
 
+
 /**
- * display_version - To display the version infomation from an ELF header.
+ * display_version - Displays the version information from an ELF header.
  * @version_info: A pointer to an array containing the ELF version data.
- */
+*/
 
 void print_version(unsigned char *e_ident)
 {
-
-	printf(" Version: %d",
+	 printf(" Version: %d",
 			  e_ident[EI_VERSION]);
 
 	switch (e_ident[EI_VERSION])
@@ -146,17 +133,15 @@ void print_version(unsigned char *e_ident)
 		printf("\n");
 		break;
 	}
-
 }
 
 /**
- * display_osabi - To show the OS/ABI information from an ELF header.
+ * display_osabi - Presents the OS/ABI information from an ELF header.
  * @osabi_info: A pointer to an array containing the ELF OS/ABI data.
- */
+*/
 
 void print_osabi(unsigned char *e_ident)
 {
-
 	printf(" OS/ABI: ");
 
 	switch (e_ident[EI_OSABI])
@@ -194,31 +179,28 @@ void print_osabi(unsigned char *e_ident)
 	default:
 		printf("<unknown: %x>\n", e_ident[EI_OSABI]);
 	}
-
 }
 
+
 /**
- * display_abi - To present the ABI version information from an ELF header.
+ * display_abi - Shows the ABI version information from an ELF header.
  * @abi_info: A pointer to an array containing the ELF ABI version data.
- */
+*/
 
 void print_abi(unsigned char *e_ident)
 {
-
 	printf(" ABI Version: %d\n",
 		e_ident[EI_ABIVERSION]);
-
 }
 
 /**
- * display_type - To display the type of an ELF header.
+ * display_type - Displays the type of an ELF header.
  * @elf_type: The type of ELF file.
  * @class_info: A pointer to an array containing the ELF class data.
- */
+*/
 
 void print_type(unsigned int e_type, unsigned char *e_ident)
 {
-
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
 
@@ -244,18 +226,16 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 	default:
 		printf("<unknown: %x>\n", e_type);
 	}
-
 }
 
 /**
- * display_entry - To display the entry point address from an ELF header.
+ * display_entry - Displays the entry point address from an ELF header.
  * @entry_point: The address of the ELF entry point.
  * @class_info: A pointer to an array containing the ELF class data.
- */
+*/
 
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-
 	printf(" Entry point address: ");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
@@ -270,43 +250,37 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 
 	else
 		printf("%#lx\n", e_entry);
-
 }
 
+
 /**
- * finish_elf - To finalize the closure of an ELF file.
+ * finalize_elf - Concludes the handling of an ELF file.
  * @elf_fd: The file descriptor associated with the ELF file.
- *
- * Note: Exits with code 98 if the ELF file cannot be properly closed.
- */
+ * Note: Exits with code 98 if the ELF file closure encounters issues.
+*/
 
 void close_elf(int elf)
 {
-
 	if (close(elf) == -1)
 	{
 		dprintf(STDERR_FILENO,
 			"Error: Can't close fd %d\n", elf);
 		exit(98);
 	}
-
 }
 
 /**
- * main - To present the details found in the ELF header
- * positioned at the beginning of an ELF file.
+ * main - Presents the details found in the ELF header
+ * situated at the beginning of an ELF file.
  * @argument_count: The count of arguments given to the program.
  * @argument_values: An array of pointers to the argument values.
- *
  * Return: Returns 0 upon successful execution.
- *
- * Note: Exits with code 98 if the file is not in the ELF format
+ * Note: Exits with code 98 if the file is not recognized as an ELF File
  * or if the function encounters an error.
- */
+*/
 
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-
 	Elf64_Ehdr *header;
 	int o, r;
 
@@ -346,6 +320,5 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	free(header);
 	close_elf(o);
 	return (0);
-
 }
 
